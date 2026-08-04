@@ -21,11 +21,11 @@ export default function NodeCanvas({ density = 46 }) {
       "(prefers-reduced-motion: reduce)"
     ).matches;
 
-    // 72% of nodes land in the right two-thirds of the canvas; the rest
-    // scatter across the full width so the left edge doesn't feel empty.
+    // 85% of nodes land in the right ~60% of the canvas; the rest scatter
+    // across the full width so the left edge doesn't feel totally bare.
     function biasedX() {
-      if (Math.random() < 0.72) {
-        return width * 0.32 + Math.random() * width * 0.68;
+      if (Math.random() < 0.85) {
+        return width * 0.4 + Math.random() * width * 0.6;
       }
       return Math.random() * width;
     }
@@ -52,15 +52,15 @@ export default function NodeCanvas({ density = 46 }) {
         y: height * 0.34 + Math.random() * height * 0.2,
         vx: (Math.random() - 0.5) * 0.06,
         vy: (Math.random() - 0.5) * 0.06,
-        baseR: 4.2,
+        baseR: 5,
       };
       nodes.push(heroNode);
     }
 
     function step() {
       ctx.clearRect(0, 0, width, height);
-      const linkDist = Math.min(width, height) * 0.16;
-      t += 0.02;
+      const linkDist = Math.min(width, height) * 0.13;
+      t += 0.038;
       const pulse = (Math.sin(t) + 1) / 2; // 0..1
 
       for (let i = 0; i < nodes.length; i++) {
@@ -103,12 +103,12 @@ export default function NodeCanvas({ density = 46 }) {
         const r = heroNode.baseR + pulse * 2.2;
         const glow = ctx.createRadialGradient(
           heroNode.x, heroNode.y, 0,
-          heroNode.x, heroNode.y, r * 5.5
+          heroNode.x, heroNode.y, r * 8
         );
-        glow.addColorStop(0, `rgba(79, 143, 255, ${0.22 + pulse * 0.14})`);
+        glow.addColorStop(0, `rgba(79, 143, 255, ${0.32 + pulse * 0.18})`);
         glow.addColorStop(1, "rgba(79, 143, 255, 0)");
         ctx.beginPath();
-        ctx.arc(heroNode.x, heroNode.y, r * 5.5, 0, Math.PI * 2);
+        ctx.arc(heroNode.x, heroNode.y, r * 8, 0, Math.PI * 2);
         ctx.fillStyle = glow;
         ctx.fill();
 
