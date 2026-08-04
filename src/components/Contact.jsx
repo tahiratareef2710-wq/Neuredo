@@ -75,7 +75,7 @@ export default function Contact() {
           >
             <li>
               <Mail size={17} />
-              <span>neuredo.edu@gmail.com</span>
+              <span>neuredoedu@gmail.com</span>
             </li>
             <li>
               <Phone size={17} />

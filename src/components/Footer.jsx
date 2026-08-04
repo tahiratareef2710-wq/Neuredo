@@ -40,7 +40,7 @@ export default function Footer() {
         </nav>
       </div>
       <div className="container site-footer__bottom">
-        <span>&copy; {new Date().getFullYear()} Neuredo. All rights reserved.</span>
+       <span>© 2024 Neuredo. All rights reserved.</span>
         <span>Built for students who want structure, not shortcuts.</span>
       </div>
     </footer>
