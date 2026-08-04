@@ -1,5 +1,12 @@
-// Node positions (x, y in % ) describe how each track sits on the blueprint
+// Node positions (x, y in %) describe how each track sits on the blueprint
 // grid in the Tracks section, echoing the node-and-line mark in the logo.
+//
+// Every track now uses the same shape: a short list of items (courses or
+// subjects), each pointing at a Google Form. Swap the `formUrl` placeholders
+// below for the real form links whenever they're ready — until then the UI
+// shows a disabled "Form coming soon" state instead of a dead link.
+
+const FORM_PLACEHOLDER = "";
 
 export const tracks = [
   {
@@ -8,28 +15,33 @@ export const tracks = [
     name: "Technical Skills",
     short: "Technical",
     summary:
-      "Programming, data literacy and applied tools — built through projects, not slides.",
-    node: { x: 18, y: 24 },
-    videos: [
-      { title: "Setting up your first dev environment", duration: "12:04", level: "Foundation" },
-      { title: "Python fundamentals: variables to functions", duration: "18:41", level: "Foundation" },
-      { title: "Working with real datasets in Excel & SQL", duration: "22:15", level: "Intermediate" },
-      { title: "Building your first web page", duration: "15:37", level: "Intermediate" },
+      "Programming, workflows and applied tools — built through real projects, not slides.",
+    cta: "View Courses",
+    node: { x: 12, y: 22 },
+    items: [
+      { title: "Git & GitHub", formUrl: FORM_PLACEHOLDER },
+      { title: "CI/CD Workflows", formUrl: FORM_PLACEHOLDER },
+      { title: "Flutter", formUrl: FORM_PLACEHOLDER },
+      { title: "Web Development", formUrl: FORM_PLACEHOLDER },
     ],
   },
   {
-    id: "soft-skills",
+    id: "academic-tuition",
     index: "02",
-    name: "Soft Skills",
-    short: "Soft Skills",
+    name: "Academic Tuition (Grades 4–8)",
+    short: "Grades 4–8",
     summary:
-      "Communication, teamwork and critical thinking — the skills that carry every other skill.",
-    node: { x: 62, y: 14 },
-    videos: [
-      { title: "Structuring a clear argument", duration: "09:52", level: "Foundation" },
-      { title: "Public speaking without the panic", duration: "16:20", level: "Foundation" },
-      { title: "Giving and receiving feedback well", duration: "11:08", level: "Intermediate" },
-      { title: "Leading a group project", duration: "14:33", level: "Intermediate" },
+      "One-on-one and group tuition for grades 4 through 8, across every core subject.",
+    cta: "View Subjects",
+    node: { x: 50, y: 8 },
+    items: [
+      { title: "Maths", formUrl: FORM_PLACEHOLDER },
+      { title: "English", formUrl: FORM_PLACEHOLDER },
+      { title: "Science", formUrl: FORM_PLACEHOLDER },
+      { title: "Urdu", formUrl: FORM_PLACEHOLDER },
+      { title: "Islamiyat", formUrl: FORM_PLACEHOLDER },
+      { title: "Social Studies", formUrl: FORM_PLACEHOLDER },
+      { title: "Computer Science", formUrl: FORM_PLACEHOLDER },
     ],
   },
   {
@@ -38,43 +50,67 @@ export const tracks = [
     name: "O Levels",
     short: "O Levels",
     summary:
-      "Cambridge O Level coursework across core subjects, paced against real past-paper practice.",
-    node: { x: 84, y: 46 },
-    videos: [
-      { title: "Physics: forces and motion, worked examples", duration: "24:10", level: "O Level" },
-      { title: "Chemistry: balancing equations from scratch", duration: "19:47", level: "O Level" },
-      { title: "English: comprehension technique breakdown", duration: "17:29", level: "O Level" },
-      { title: "Maths: past paper walkthrough, Paper 2", duration: "28:03", level: "O Level" },
+      "Cambridge O Level coursework, paced against real past-paper practice.",
+    cta: "View Subjects",
+    node: { x: 88, y: 24 },
+    items: [
+      { title: "Computer Science", formUrl: FORM_PLACEHOLDER },
+      { title: "Business Studies", formUrl: FORM_PLACEHOLDER },
     ],
   },
   {
-    id: "quranic-education",
+    id: "a-levels",
     index: "04",
-    name: "Quranic Education",
-    short: "Quranic Edu",
+    name: "A Levels",
+    short: "A Levels",
     summary:
-      "Tajweed, memorization and tafsir fundamentals, taught with a steady, structured pace.",
-    node: { x: 30, y: 68 },
-    videos: [
-      { title: "Tajweed basics: articulation points", duration: "13:55", level: "Foundation" },
-      { title: "Hifz method: building a daily routine", duration: "10:41", level: "Foundation" },
-      { title: "Introduction to tafsir: Surah Al-Fatiha", duration: "20:12", level: "Intermediate" },
-      { title: "Correcting common recitation mistakes", duration: "15:06", level: "Intermediate" },
+      "Cambridge A Level depth for students building toward university applications.",
+    cta: "View Subjects",
+    node: { x: 94, y: 60 },
+    items: [
+      { title: "Computer Science", formUrl: FORM_PLACEHOLDER },
+      { title: "Business Studies", formUrl: FORM_PLACEHOLDER },
     ],
   },
   {
-    id: "intermediate-studies",
+    id: "intermediate",
     index: "05",
-    name: "Intermediate Studies",
+    name: "Intermediate",
     short: "Intermediate",
     summary:
-      "FSc / ICS-level coursework bridging school and university, subject by subject.",
-    node: { x: 70, y: 78 },
-    videos: [
-      { title: "Calculus: limits and continuity", duration: "26:18", level: "Intermediate" },
-      { title: "Statistics: probability distributions", duration: "21:44", level: "Intermediate" },
-      { title: "Computer Science: intro to algorithms", duration: "23:59", level: "Intermediate" },
-      { title: "Economics: supply and demand in practice", duration: "18:22", level: "Intermediate" },
+      "Intermediate-level coursework bridging school and university, subject by subject.",
+    cta: "View Subjects",
+    node: { x: 68, y: 84 },
+    items: [
+      { title: "Maths", formUrl: FORM_PLACEHOLDER },
+      { title: "Computer Science", formUrl: FORM_PLACEHOLDER },
+    ],
+  },
+  {
+    id: "fsc",
+    index: "06",
+    name: "FSc",
+    short: "FSc",
+    summary:
+      "FSc coursework for science-stream students, with structured practice and support.",
+    cta: "View Subjects",
+    node: { x: 34, y: 84 },
+    items: [
+      { title: "Maths", formUrl: FORM_PLACEHOLDER },
+      { title: "Computer Science", formUrl: FORM_PLACEHOLDER },
+    ],
+  },
+  {
+    id: "quranic-studies",
+    index: "07",
+    name: "Quranic Studies",
+    short: "Quranic Studies",
+    summary:
+      "Helping beginners learn to recite the Quran correctly, with a steady, structured pace.",
+    cta: "View Subjects",
+    node: { x: 6, y: 60 },
+    items: [
+      { title: "Learn Tajweed", formUrl: FORM_PLACEHOLDER },
     ],
   },
 ];

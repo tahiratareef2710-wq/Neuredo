@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { X, Play, Clock, ArrowUpRight } from "lucide-react";
+import { X, ArrowUpRight, FileText } from "lucide-react";
 import { tracks } from "../data/tracks";
 import { useReveal } from "../hooks/useReveal";
 import "./Tracks.css";
@@ -8,10 +8,13 @@ import "./Tracks.css";
 const EDGES = [
   [0, 1],
   [1, 2],
-  [2, 4],
-  [4, 3],
-  [3, 0],
-  [0, 4],
+  [2, 3],
+  [3, 4],
+  [4, 5],
+  [5, 6],
+  [6, 0],
+  [0, 3],
+  [1, 4],
 ];
 
 export default function Tracks() {
@@ -49,7 +52,7 @@ export default function Tracks() {
           animate={visible ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.08 }}
         >
-          Five nodes. One architecture.
+          Seven nodes. One architecture.
         </motion.h2>
         <motion.p
           className="tracks__lede"
@@ -57,9 +60,8 @@ export default function Tracks() {
           animate={visible ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.14 }}
         >
-          Open a track to see how its video curriculum is structured.
-          Content shown here is a preview — the full library ships in
-          the next stage.
+          Open a track to see its subjects or courses. Each one links to a
+          short Google Form to get started.
         </motion.p>
 
         {/* Decorative blueprint diagram, mirrors the logo's node mark */}
@@ -73,7 +75,7 @@ export default function Tracks() {
                 x2={tracks[b].node.x}
                 y2={tracks[b].node.y}
                 className="tracks__edge"
-                style={{ animationDelay: `${i * 0.15}s` }}
+                style={{ animationDelay: `${i * 0.12}s` }}
               />
             ))}
             {tracks.map((t, i) => (
@@ -124,7 +126,7 @@ function TrackCard({ track, index, parentVisible, onOpen }) {
       <h3 className="track-card__name">{track.name}</h3>
       <p className="track-card__summary">{track.summary}</p>
       <span className="track-card__cta">
-        View curriculum <ArrowUpRight size={15} />
+        {track.cta} <ArrowUpRight size={15} />
       </span>
       <span className="track-card__glow" aria-hidden="true" />
     </motion.button>
@@ -145,7 +147,7 @@ function TrackModal({ track, onClose }) {
         className="track-modal"
         role="dialog"
         aria-modal="true"
-        aria-label={`${track.name} curriculum`}
+        aria-label={`${track.name} — ${track.cta.toLowerCase()}`}
         initial={{ opacity: 0, y: 32, scale: 0.98 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         exit={{ opacity: 0, y: 20, scale: 0.98 }}
@@ -164,30 +166,44 @@ function TrackModal({ track, onClose }) {
 
         <p className="track-modal__summary">{track.summary}</p>
 
-        <div className="track-modal__grid">
-          {track.videos.map((v, i) => (
-            <div className="video-card" key={v.title}>
-              <div className="video-card__thumb">
-                <span className="video-card__play">
-                  <Play size={18} fill="currentColor" />
-                </span>
-                <span className="video-card__number">{String(i + 1).padStart(2, "0")}</span>
-              </div>
-              <div className="video-card__meta">
-                <span className="video-card__level eyebrow">{v.level}</span>
-                <h4>{v.title}</h4>
-                <span className="video-card__duration">
-                  <Clock size={13} /> {v.duration}
-                </span>
-              </div>
-            </div>
+        <div className="track-modal__list">
+          {track.items.map((item) => (
+            <ItemRow key={item.title} item={item} />
           ))}
         </div>
 
         <p className="track-modal__footnote">
-          Preview layout — actual videos for {track.name} will be uploaded here in the next stage.
+          Tap an item to open its Google Form and get started.
         </p>
       </motion.div>
     </motion.div>
+  );
+}
+
+function ItemRow({ item }) {
+  const hasForm = Boolean(item.formUrl);
+
+  return (
+    <div className="item-row">
+      <span className="item-row__icon" aria-hidden="true">
+        <FileText size={16} />
+      </span>
+      <span className="item-row__title">{item.title}</span>
+
+      {hasForm ? (
+        <a
+          className="item-row__action"
+          href={item.formUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Apply <ArrowUpRight size={14} />
+        </a>
+      ) : (
+        <span className="item-row__action item-row__action--disabled">
+          Form coming soon
+        </span>
+      )}
+    </div>
   );
 }
