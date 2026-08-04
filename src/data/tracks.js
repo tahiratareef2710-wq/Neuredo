@@ -73,12 +73,12 @@ export const tracks = [
     ],
   },
   {
-    id: "intermediate",
+    id: "matriculation",
     index: "05",
-    name: "Intermediate",
-    short: "Intermediate",
+    name: "Matriculation",
+    short: "Matric",
     summary:
-      "Intermediate-level coursework bridging school and university, subject by subject.",
+      "Matriculation-level coursework bridging school and university, subject by subject.",
     cta: "View Subjects",
     node: { x: 68, y: 84 },
     items: [
@@ -87,12 +87,12 @@ export const tracks = [
     ],
   },
   {
-    id: "fsc",
+    id: "intermediate",
     index: "06",
-    name: "FSc",
-    short: "FSc",
+    name: "Intermediate",
+    short: "Intermediate",
     summary:
-      "FSc coursework for science-stream students, with structured practice and support.",
+      "Intermediate (FSc) coursework for science-stream students, with structured practice and support.",
     cta: "View Subjects",
     node: { x: 34, y: 84 },
     items: [
