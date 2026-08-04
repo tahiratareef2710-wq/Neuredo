@@ -64,7 +64,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.5 }}
         >
           <div className="hero__stat">
-            <span className="hero__stat-value">5</span>
+            <span className="hero__stat-value">7</span>
             <span className="hero__stat-label">Learning tracks</span>
           </div>
           <div className="hero__stat-divider" />
