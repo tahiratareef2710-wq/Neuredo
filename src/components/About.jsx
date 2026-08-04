@@ -4,14 +4,14 @@ import "./About.css";
 
 const PRINCIPLES = [
   {
-    label: "Connected",
-    title: "Nothing is taught in isolation",
-    body: "A soft-skills lesson on structuring an argument feeds directly into how we teach O Level English comprehension. Tracks reference each other on purpose.",
+    label: "Convergence",
+    title: "We connect the dots",
+    body: "Critical thinking in O/A Level and FSc studies feeds directly into how you write clean software logic. Every track references another, building a single, cohesive skill set.",
   },
   {
     label: "Paced",
-    title: "Built for a real week, not a sprint",
-    body: "Short, focused video sessions replace long lectures. Students build a habit they can actually keep up — five days a week, not five hours a day.",
+    title: "Build a habit, not a burnout",
+    body: "Short, hyper-focused sessions replace long lectures. Students build a sustainable daily rhythm—five days a week, not five hours a day.",
   },
   {
     label: "Measured",
@@ -53,12 +53,7 @@ export default function About() {
             animate={visible ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.16 }}
           >
-            Most platforms hand students a stack of unrelated courses.
-            Neuredo was built the opposite way: as a single architecture,
-            where technical skills, soft skills, O Level coursework,
-            Quranic education and intermediate studies are drawn as
-            connected nodes rather than separate shelves. Every track has
-            its own place — and its own relationship to the others.
+            Traditional learning is broken into isolated silos. NEUREDO fixes that. We integrate academic curricula, spiritual values, and high-demand technical skills into a single, structured ecosystem. Instead of juggling scattered topics, you get a clear, guided journey where every track builds on the last.
           </motion.p>
         </div>
 
