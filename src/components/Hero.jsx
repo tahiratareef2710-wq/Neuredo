@@ -70,7 +70,7 @@ export default function Hero() {
           <div className="hero__stat-divider" />
           <div className="hero__stat">
             <span className="hero__stat-value">100%</span>
-            <span className="hero__stat-label">Video-led curriculum</span>
+            <span className="hero__stat-label">Live Interactive Classes</span>
           </div>
           <div className="hero__stat-divider" />
           <div className="hero__stat">
