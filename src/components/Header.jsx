@@ -1,115 +1,104 @@
-import { motion } from "framer-motion";
-import { ArrowDown, ArrowRight } from "lucide-react";
-import NodeCanvas from "./NodeCanvas";
-import { tracks } from "../data/tracks";
-import "./Hero.css";
+import { useEffect, useState } from "react";
+import { Menu, X } from "lucide-react";
+import logo from "../assets/logo.png";
+import "./Header.css";
 
-export default function Hero() {
-  const scrollTo = (id) =>
+const NAV_ITEMS = [
+  { id: "home", label: "Home" },
+  { id: "about", label: "About" },
+  { id: "tracks", label: "Learning Tracks" },
+  { id: "blog", label: "Blog" },
+  { id: "contact", label: "Contact" },
+];
+
+export default function Header({ activeId }) {
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const handleNavClick = (id) => {
+    setMenuOpen(false);
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
-    <section id="home" className="hero">
-      <NodeCanvas />
-      <div className="hero__vignette" aria-hidden="true" />
-
-      <div className="container hero__inner">
-        <motion.p
-          className="eyebrow hero__eyebrow"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+    <header className={`site-header ${scrolled ? "is-scrolled" : ""}`}>
+      <div className="site-header__inner container">
+        <a
+          href="#home"
+          className="brand"
+          onClick={(e) => {
+            e.preventDefault();
+            handleNavClick("home");
+          }}
         >
-          Neuredo — Online Academy
-        </motion.p>
+          <img src={logo} alt="Neuredo" className="brand__mark" />
+          <span className="brand__wordmark sr-only">Neuredo</span>
+        </a>
 
-        <motion.h1
-          className="hero__title"
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-        >
-          The architecture
-          <br />
-          of learning.
-        </motion.h1>
+        <nav className="site-nav" aria-label="Primary">
+          <ul>
+            {NAV_ITEMS.map((item) => (
+              <li key={item.id}>
+                <a
+                  href={`#${item.id}`}
+                  className={activeId === item.id ? "is-active" : ""}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavClick(item.id);
+                  }}
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
 
-        <motion.p
-          className="hero__lede"
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.22 }}
+        <button
+          className="nav-cta"
+          onClick={() => handleNavClick("tracks")}
         >
-          Five disciplines, one structure. Neuredo connects technical
-          skills, soft skills, O Levels, Quranic education and
-          intermediate studies into a single, deliberately built path —
-          instead of five disconnected courses.
-        </motion.p>
+          Start Learning
+        </button>
 
-        <motion.div
-          className="hero__actions"
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.34 }}
+        <button
+          className="nav-toggle"
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={menuOpen}
+          onClick={() => setMenuOpen((v) => !v)}
         >
-          <button className="btn btn--primary" onClick={() => scrollTo("tracks")}>
-            Explore learning tracks
-            <ArrowRight size={16} />
-          </button>
-          <button className="btn btn--ghost" onClick={() => scrollTo("about")}>
-            How Neuredo works
-          </button>
-        </motion.div>
-
-        <motion.div
-          className="hero__stats"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-        >
-          <div className="hero__stat">
-            <span className="hero__stat-value">5</span>
-            <span className="hero__stat-label">Learning tracks</span>
-          </div>
-          <div className="hero__stat-divider" />
-          <div className="hero__stat">
-            <span className="hero__stat-value">100%</span>
-            <span className="hero__stat-label">Video-led curriculum</span>
-          </div>
-          <div className="hero__stat-divider" />
-          <div className="hero__stat">
-            <span className="hero__stat-value">1</span>
-            <span className="hero__stat-label">Connected structure</span>
-          </div>
-        </motion.div>
+          {menuOpen ? <X size={22} /> : <Menu size={22} />}
+        </button>
       </div>
 
-      <motion.div
-        className="hero__map"
-        initial={{ opacity: 0, x: 16 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.5 }}
-        aria-hidden="true"
-      >
-        <span className="hero__map-label">Five tracks, one map</span>
-        <ul className="hero__map-list">
-          {tracks.map((track) => (
-            <li key={track.id}>
-              <span className="hero__map-index">{track.index}</span>
-              {track.short}
+      <div className={`mobile-nav ${menuOpen ? "is-open" : ""}`}>
+        <ul>
+          {NAV_ITEMS.map((item) => (
+            <li key={item.id}>
+              <a
+                href={`#${item.id}`}
+                className={activeId === item.id ? "is-active" : ""}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavClick(item.id);
+                }}
+              >
+                {item.label}
+              </a>
             </li>
           ))}
         </ul>
-      </motion.div>
-
-      <button
-        className="hero__scroll-cue"
-        onClick={() => scrollTo("about")}
-        aria-label="Scroll to About section"
-      >
-        <span>Scroll</span>
-        <ArrowDown size={16} />
-      </button>
-    </section>
+        <button className="nav-cta nav-cta--mobile" onClick={() => handleNavClick("tracks")}>
+          Start Learning
+        </button>
+      </div>
+    </header>
   );
 }

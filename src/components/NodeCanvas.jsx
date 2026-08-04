@@ -3,7 +3,9 @@ import { useEffect, useRef } from "react";
 // Ambient constellation field for the hero. Nodes drift slowly and draw a
 // connecting edge whenever two of them come within range — a direct callback
 // to the node-and-line mark in the Neuredo logo, rendered as living background
-// texture rather than a static badge.
+// texture rather than a static badge. The field is weighted toward the right
+// two-thirds of the canvas (clear of the headline) and carries one larger,
+// gently pulsing "hero" node as a focal point.
 export default function NodeCanvas({ density = 46 }) {
   const canvasRef = useRef(null);
 
@@ -12,10 +14,21 @@ export default function NodeCanvas({ density = 46 }) {
     const ctx = canvas.getContext("2d");
     let width, height, dpr;
     let nodes = [];
+    let heroNode = null;
     let raf;
+    let t = 0;
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
+
+    // 72% of nodes land in the right two-thirds of the canvas; the rest
+    // scatter across the full width so the left edge doesn't feel empty.
+    function biasedX() {
+      if (Math.random() < 0.72) {
+        return width * 0.32 + Math.random() * width * 0.68;
+      }
+      return Math.random() * width;
+    }
 
     function resize() {
       dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -25,19 +38,30 @@ export default function NodeCanvas({ density = 46 }) {
       canvas.height = height * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-      const count = Math.round((width * height) / (18000 / (density / 46)));
-      nodes = Array.from({ length: Math.max(18, Math.min(count, 70)) }, () => ({
-        x: Math.random() * width,
+      const count = Math.round((width * height) / (15000 / (density / 46)));
+      nodes = Array.from({ length: Math.max(20, Math.min(count, 90)) }, () => ({
+        x: biasedX(),
         y: Math.random() * height,
         vx: (Math.random() - 0.5) * 0.18,
         vy: (Math.random() - 0.5) * 0.18,
         r: Math.random() * 1.6 + 1.1,
       }));
+
+      heroNode = {
+        x: width * 0.6 + Math.random() * width * 0.15,
+        y: height * 0.34 + Math.random() * height * 0.2,
+        vx: (Math.random() - 0.5) * 0.06,
+        vy: (Math.random() - 0.5) * 0.06,
+        baseR: 4.2,
+      };
+      nodes.push(heroNode);
     }
 
     function step() {
       ctx.clearRect(0, 0, width, height);
       const linkDist = Math.min(width, height) * 0.16;
+      t += 0.02;
+      const pulse = (Math.sin(t) + 1) / 2; // 0..1
 
       for (let i = 0; i < nodes.length; i++) {
         const a = nodes[i];
@@ -54,8 +78,10 @@ export default function NodeCanvas({ density = 46 }) {
           const dx = a.x - b.x;
           const dy = a.y - b.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < linkDist) {
-            const alpha = (1 - dist / linkDist) * 0.35;
+          const isHeroLink = a === heroNode || b === heroNode;
+          const reach = isHeroLink ? linkDist * 1.6 : linkDist;
+          if (dist < reach) {
+            const alpha = (1 - dist / reach) * (isHeroLink ? 0.5 : 0.35);
             ctx.strokeStyle = `rgba(79, 143, 255, ${alpha})`;
             ctx.lineWidth = 1;
             ctx.beginPath();
@@ -66,9 +92,29 @@ export default function NodeCanvas({ density = 46 }) {
         }
       }
       for (const n of nodes) {
+        if (n === heroNode) continue;
         ctx.beginPath();
         ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
         ctx.fillStyle = "rgba(143, 182, 255, 0.85)";
+        ctx.fill();
+      }
+
+      if (heroNode) {
+        const r = heroNode.baseR + pulse * 2.2;
+        const glow = ctx.createRadialGradient(
+          heroNode.x, heroNode.y, 0,
+          heroNode.x, heroNode.y, r * 5.5
+        );
+        glow.addColorStop(0, `rgba(79, 143, 255, ${0.22 + pulse * 0.14})`);
+        glow.addColorStop(1, "rgba(79, 143, 255, 0)");
+        ctx.beginPath();
+        ctx.arc(heroNode.x, heroNode.y, r * 5.5, 0, Math.PI * 2);
+        ctx.fillStyle = glow;
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.arc(heroNode.x, heroNode.y, r, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(200, 220, 255, 0.95)";
         ctx.fill();
       }
 
