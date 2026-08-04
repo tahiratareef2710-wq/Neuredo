@@ -113,20 +113,8 @@ export default function Tracks() {
 
 function TrackCard({ track, index, parentVisible, onOpen }) {
   return (
-    <motion.button
-      className="track-card"
-      initial={{ opacity: 0, y: 30 }}
-      animate={parentVisible ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.2 + index * 0.08 }}
-      onClick={onOpen}
-    >
-      <span className="track-card__index eyebrow">{track.index}</span>
-      <h3 className="track-card__name">{track.name}</h3>
-      <p className="track-card__summary">{track.summary}</p>
-      <span className="track-card__cta">
-        View curriculum <ArrowUpRight size={15} />
-      </span>
-      <span className="track-card__glow" aria-hidden="true" />
+    <motion.button>
+     
     </motion.button>
   );
 }
@@ -141,53 +129,7 @@ function TrackModal({ track, onClose }) {
       transition={{ duration: 0.25 }}
       onClick={onClose}
     >
-      <motion.div
-        className="track-modal"
-        role="dialog"
-        aria-modal="true"
-        aria-label={`${track.name} curriculum`}
-        initial={{ opacity: 0, y: 32, scale: 0.98 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        exit={{ opacity: 0, y: 20, scale: 0.98 }}
-        transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
-        onClick={(e) => e.stopPropagation()}
-      >
-        <div className="track-modal__header">
-          <div>
-            <span className="eyebrow track-modal__index">{track.index} — {track.short}</span>
-            <h3>{track.name}</h3>
-          </div>
-          <button className="track-modal__close" onClick={onClose} aria-label="Close">
-            <X size={20} />
-          </button>
-        </div>
-
-        <p className="track-modal__summary">{track.summary}</p>
-
-        <div className="track-modal__grid">
-          {track.videos.map((v, i) => (
-            <div className="video-card" key={v.title}>
-              <div className="video-card__thumb">
-                <span className="video-card__play">
-                  <Play size={18} fill="currentColor" />
-                </span>
-                <span className="video-card__number">{String(i + 1).padStart(2, "0")}</span>
-              </div>
-              <div className="video-card__meta">
-                <span className="video-card__level eyebrow">{v.level}</span>
-                <h4>{v.title}</h4>
-                <span className="video-card__duration">
-                  <Clock size={13} /> {v.duration}
-                </span>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <p className="track-modal__footnote">
-          Preview layout — actual videos for {track.name} will be uploaded here in the next stage.
-        </p>
-      </motion.div>
+      
     </motion.div>
   );
 }
