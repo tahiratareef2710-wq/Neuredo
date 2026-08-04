@@ -39,7 +39,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.22 }}
         >
-          At NEUREDO, we unite academic excellence, foundational values, and future-ready tech skills under one roof. Whether mastering your O/A Level and FSc subjects, engaging in Quranic Studies, or building real-world software engineering skills in Web Development, Flutter, GitHub, and DevOps—our platform provides personalized mentorship for every step of your journey. Transform your learning experience and gain the competitive edge to succeed both in the classroom and the tech industry.
+          At NEUREDO, we unite academic excellence, foundational values, and future-ready technical skills under one roof. Whether mastering O/A Levels and FSc, engaging in Quranic Studies, or building real-world software expertise, our platform provides personalized mentorship for every step of your journey. Elevate your learning experience and gain the competitive edge to succeed both in the classroom and the tech industry.
         </motion.p>
 
         <motion.div
