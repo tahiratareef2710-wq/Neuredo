@@ -1,0 +1,140 @@
+.article-page {
+  background: var(--sky-050);
+  color: var(--ink-text);
+  min-height: 100vh;
+}
+
+.article-topbar {
+  background: var(--navy-900);
+  padding: 1.1rem 0;
+}
+
+.article-topbar__inner {
+  display: flex;
+  align-items: center;
+}
+
+.article-topbar__brand img {
+  height: 34px;
+  display: block;
+}
+
+.article {
+  max-width: 720px;
+  padding-top: 3.2rem;
+  padding-bottom: 5rem;
+}
+
+.article-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--blue-500);
+}
+
+.article__meta {
+  margin-top: 2.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  flex-wrap: wrap;
+}
+
+.article__tag {
+  color: var(--azure-500);
+}
+
+.article__date {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  color: var(--slate-500);
+}
+
+.article__title {
+  margin-top: 1rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.9rem, 4vw, 2.6rem);
+  line-height: 1.25;
+  color: var(--navy-900);
+}
+
+.article__excerpt {
+  margin-top: 1.1rem;
+  font-size: 1.08rem;
+  line-height: 1.7;
+  color: var(--slate-500);
+  max-width: 620px;
+}
+
+.article__body {
+  margin-top: 2.6rem;
+  font-size: 1.02rem;
+  line-height: 1.8;
+  color: var(--ink-text);
+}
+
+.article__body p {
+  margin-bottom: 1.35rem;
+}
+
+.article__body h3 {
+  margin-top: 2.2rem;
+  margin-bottom: 0.9rem;
+  font-size: 1.28rem;
+  font-weight: 600;
+  color: var(--navy-900);
+}
+
+.article__body ul {
+  margin: 0 0 1.35rem;
+  padding-left: 1.3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.article__body li {
+  line-height: 1.65;
+}
+
+.article__body blockquote {
+  margin: 1.8rem 0;
+  padding: 1.1rem 1.4rem;
+  border-left: 3px solid var(--blue-500);
+  background: var(--white);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  font-size: 1.06rem;
+  font-style: italic;
+  color: var(--navy-900);
+}
+
+.article__footer {
+  margin-top: 3rem;
+  padding-top: 1.6rem;
+  border-top: 1px solid var(--sky-200);
+}
+
+.article-notfound {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.article-notfound h1 {
+  font-size: 1.8rem;
+  color: var(--navy-900);
+  margin-bottom: 0.6rem;
+}
+
+.article-notfound p {
+  color: var(--slate-500);
+  margin-bottom: 1.6rem;
+}
+
+@media (max-width: 600px) {
+  .article {
+    padding-top: 2.2rem;
+  }
+}

@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import { blogPosts } from "../data/blogPosts";
 import { useReveal } from "../hooks/useReveal";
@@ -59,9 +60,14 @@ export default function Blog() {
               <p className="blog-card__excerpt">{post.excerpt}</p>
               <div className="blog-card__foot">
                 <span className="blog-card__read">{post.readTime} read</span>
-                <span className="blog-card__link">
+                <Link
+                  to={`/blog/${post.slug}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="blog-card__link"
+                >
                   Read <ArrowUpRight size={14} />
-                </span>
+                </Link>
               </div>
             </motion.article>
           ))}

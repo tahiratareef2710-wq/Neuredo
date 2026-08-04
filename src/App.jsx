@@ -1,31 +1,13 @@
-import Header from "./components/Header";
-import ScrollRail from "./components/ScrollRail";
-import Hero from "./components/Hero";
-import About from "./components/About";
-import Tracks from "./components/Tracks";
-import Blog from "./components/Blog";
-import Contact from "./components/Contact";
-import Footer from "./components/Footer";
-import { useScrollSpy } from "./hooks/useScrollSpy";
-
-const SECTION_IDS = ["home", "about", "tracks", "blog", "contact"];
+import { Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
+import BlogPost from "./pages/BlogPost";
 
 function App() {
-  const activeId = useScrollSpy(SECTION_IDS);
-
   return (
-    <>
-      <Header activeId={activeId} />
-      <ScrollRail activeId={activeId} />
-      <main>
-        <Hero />
-        <About />
-        <Tracks />
-        <Blog />
-        <Contact />
-      </main>
-      <Footer />
-    </>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/blog/:slug" element={<BlogPost />} />
+    </Routes>
   );
 }
 
