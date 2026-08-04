@@ -39,10 +39,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.22 }}
         >
-          Five disciplines, one structure. Neuredo connects technical
-          skills, soft skills, O Levels, Quranic education and
-          intermediate studies into a single, deliberately built path —
-          instead of five disconnected courses.
+          At NEUREDO, we unite academic excellence, foundational values, and future-ready tech skills under one roof. Whether mastering your O/A Level and FSc subjects, engaging in Quranic Studies, or building real-world software engineering skills in Web Development, Flutter, GitHub, and DevOps—our platform provides personalized mentorship for every step of your journey. Transform your learning experience and gain the competitive edge to succeed both in the classroom and the tech industry.
         </motion.p>
 
         <motion.div
