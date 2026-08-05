@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import { Facebook, Instagram, Linkedin } from "lucide-react";
 import logo from "../assets/logo.png";
@@ -18,11 +19,13 @@ export default function Footer() {
   return (
     <footer className="site-footer">
       <div className="container site-footer__inner">
+        {/* Brand */}
         <div className="site-footer__brand">
-          <img src={logo} alt="Neuredo" />
-          <p>The Architecture of Learning.</p>
+          <div className="site-footer__logo">
+            <img src={logo} alt="Neuredo" />
+            <p>The Architecture of Learning.</p>
+          </div>
 
-          {/* Social Links */}
           <div className="site-footer__social">
             <a
               href="https://facebook.com/YOUR_PAGE"
@@ -53,18 +56,19 @@ export default function Footer() {
           </div>
         </div>
 
-        <nav aria-label="Footer">
+        {/* Navigation */}
+        <nav aria-label="Footer Navigation">
           <ul>
-            {LINKS.map((l) => (
-              <li key={l.id}>
+            {LINKS.map((link) => (
+              <li key={link.id}>
                 <a
-                  href={`#${l.id}`}
+                  href={`#${link.id}`}
                   onClick={(e) => {
                     e.preventDefault();
-                    scrollTo(l.id);
+                    scrollTo(link.id);
                   }}
                 >
-                  {l.label}
+                  {link.label}
                 </a>
               </li>
             ))}
@@ -72,8 +76,9 @@ export default function Footer() {
         </nav>
       </div>
 
+      {/* Bottom */}
       <div className="container site-footer__bottom">
-        <span>© 2024 Neuredo. All rights reserved.</span>
+        <span>© 2026 Neuredo. All rights reserved.</span>
 
         <nav className="site-footer__legal" aria-label="Legal">
           <Link to="/legal/privacy">Privacy Policy</Link>
