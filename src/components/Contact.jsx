@@ -1,26 +1,35 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, MapPin, Phone, Send, CheckCircle2 } from "lucide-react";
+import { Mail, MapPin, Phone, Send, CheckCircle2, AlertCircle } from "lucide-react";
 import { useReveal } from "../hooks/useReveal";
 import "./Contact.css";
 
+// Set VITE_API_URL in the frontend's environment (e.g. a .env file, or the
+// Vercel project's Environment Variables) to your deployed Railway backend,
+// e.g. https://neuredo-backend.up.railway.app
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
+
 const TRACK_OPTIONS = [
   "Technical Skills",
-  "Soft Skills",
+  "Academic Tuition (Grades 4-8)",
   "O Levels",
-  "Quranic Education",
-  "Intermediate Studies",
+  "A Levels",
+  "Matriculation",
+  "Intermediate",
+  "Quranic Studies",
   "Not sure yet",
 ];
 
 export default function Contact() {
   const [ref, visible] = useReveal();
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState("idle"); // idle | submitting | success | error
+  const [errorMsg, setErrorMsg] = useState("");
   const [form, setForm] = useState({
     name: "",
     email: "",
     track: TRACK_OPTIONS[0],
     message: "",
+    website: "", // honeypot -- stays empty for real visitors
   });
 
   const handleChange = (e) => {
@@ -28,10 +37,35 @@ export default function Contact() {
     setForm((f) => ({ ...f, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Frontend demo only — wire this up to your backend / email service later.
-    setSubmitted(true);
+    setStatus("submitting");
+    setErrorMsg("");
+
+    try {
+      const res = await fetch(`${API_URL}/api/contact`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      const data = await res.json().catch(() => ({}));
+
+      if (!res.ok) {
+        throw new Error(data.error || "Something went wrong. Please try again.");
+      }
+
+      setStatus("success");
+    } catch (err) {
+      setStatus("error");
+      setErrorMsg(err.message || "Something went wrong. Please try again.");
+    }
+  };
+
+  const resetForm = () => {
+    setStatus("idle");
+    setErrorMsg("");
+    setForm({ name: "", email: "", track: TRACK_OPTIONS[0], message: "", website: "" });
   };
 
   return (
@@ -75,11 +109,11 @@ export default function Contact() {
           >
             <li>
               <Mail size={17} />
-              <a href="mailto:neuredoedu@gmail.com">neuredoedu@gmail.com</a>
+              <span>neuredoedu@gmail.com</span>
             </li>
             <li>
               <Phone size={17} />
-              <a href="tel:+923072889902">+92 3072889902</a>
+              <span>+92 3072889902</span>
             </li>
             <li>
               <MapPin size={17} />
@@ -94,16 +128,15 @@ export default function Contact() {
           animate={visible ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
         >
-          {submitted ? (
+          {status === "success" ? (
             <div className="contact__success">
               <CheckCircle2 size={38} />
               <h3>Message received</h3>
               <p>
-                This is a frontend demo, so nothing was actually sent —
-                but this is exactly how the confirmation will look once
-                the backend is connected.
+                Thanks for reaching out -- we'll get back to you at the email
+                address you provided.
               </p>
-              <button className="btn btn--ghost" onClick={() => setSubmitted(false)}>
+              <button className="btn btn--ghost" onClick={resetForm}>
                 Send another
               </button>
             </div>
@@ -160,8 +193,34 @@ export default function Contact() {
                 />
               </div>
 
-              <button type="submit" className="btn btn--primary contact-form__submit">
-                Send message
+              {/* Honeypot field -- hidden from real visitors via CSS, but bots
+                  that auto-fill every input will trip it. */}
+              <div className="field field--honeypot" aria-hidden="true">
+                <label htmlFor="website">Website</label>
+                <input
+                  id="website"
+                  name="website"
+                  type="text"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={form.website}
+                  onChange={handleChange}
+                />
+              </div>
+
+              {status === "error" && (
+                <p className="contact-form__error">
+                  <AlertCircle size={15} />
+                  {errorMsg}
+                </p>
+              )}
+
+              <button
+                type="submit"
+                className="btn btn--primary contact-form__submit"
+                disabled={status === "submitting"}
+              >
+                {status === "submitting" ? "Sending..." : "Send message"}
                 <Send size={15} />
               </button>
             </form>
