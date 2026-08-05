@@ -75,11 +75,11 @@ export default function Contact() {
           >
             <li>
               <Mail size={17} />
-              <span>neuredoedu@gmail.com</span>
+              <a href="mailto:neuredoedu@gmail.com">neuredoedu@gmail.com</a>
             </li>
             <li>
               <Phone size={17} />
-              <span>+92 3072889902</span>
+              <a href="tel:+923072889902">+92 3072889902</a>
             </li>
             <li>
               <MapPin size={17} />
