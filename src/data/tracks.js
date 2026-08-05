@@ -69,7 +69,8 @@ export const tracks = [
     node: { x: 94, y: 60 },
     items: [
       { title: "Computer Science", formUrl: "https://docs.google.com/forms/d/e/1FAIpQLSfaNrTlRLoCsn872DGnGPVT7tlynzhGMMlKMD_WG1NMU_flIw/viewform?usp=header" },
-      { title: "Business Studies", formUrl: "https://docs.google.com/forms/d/e/1FAIpQLSdTi0AGQgi-EQqqtYsEY4QNyczpp8zyAnp1c8rb4UNFMp8MJw/viewform?usp=header" },
+      { title: "Business Studies", formUrl: "https://docs.google.com/forms/d/e/1FAIpQLSdTi0AGQgi-EQqqtYsEY4QNyczpp8zyAnp1c8rb4UNFMp8MJw/viewform?usp=header"},
+    ],
   },
   {
     id: "matriculation",
