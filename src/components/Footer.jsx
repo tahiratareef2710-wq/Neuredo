@@ -1,6 +1,5 @@
-
 import { Link } from "react-router-dom";
-import { Facebook, Instagram, Linkedin } from "lucide-react";
+import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 import logo from "../assets/logo.png";
 import "./Footer.css";
 
@@ -19,7 +18,6 @@ export default function Footer() {
   return (
     <footer className="site-footer">
       <div className="container site-footer__inner">
-        {/* Brand */}
         <div className="site-footer__brand">
           <div className="site-footer__logo">
             <img src={logo} alt="Neuredo" />
@@ -33,7 +31,7 @@ export default function Footer() {
               rel="noopener noreferrer"
               aria-label="Facebook"
             >
-              <Facebook size={20} />
+              <FaFacebookF size={18} />
             </a>
 
             <a
@@ -42,7 +40,7 @@ export default function Footer() {
               rel="noopener noreferrer"
               aria-label="Instagram"
             >
-              <Instagram size={20} />
+              <FaInstagram size={18} />
             </a>
 
             <a
@@ -51,12 +49,11 @@ export default function Footer() {
               rel="noopener noreferrer"
               aria-label="LinkedIn"
             >
-              <Linkedin size={20} />
+              <FaLinkedinIn size={18} />
             </a>
           </div>
         </div>
 
-        {/* Navigation */}
         <nav aria-label="Footer Navigation">
           <ul>
             {LINKS.map((link) => (
@@ -76,7 +73,6 @@ export default function Footer() {
         </nav>
       </div>
 
-      {/* Bottom */}
       <div className="container site-footer__bottom">
         <span>© 2026 Neuredo. All rights reserved.</span>
 
