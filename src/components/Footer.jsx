@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 import "./Footer.css";
 
@@ -41,6 +42,10 @@ export default function Footer() {
       </div>
       <div className="container site-footer__bottom">
        <span>© 2024 Neuredo. All rights reserved.</span>
+        <nav className="site-footer__legal" aria-label="Legal">
+          <Link to="/legal/privacy">Privacy Policy</Link>
+          <Link to="/legal/terms">Terms of Service</Link>
+        </nav>
         <span>Built for students who want structure, not shortcuts.</span>
       </div>
     </footer>
