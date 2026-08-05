@@ -19,7 +19,7 @@ export const tracks = [
     cta: "View Courses",
     node: { x: 12, y: 22 },
     items: [
-      { title: "Git & GitHub", formUrl: "https://docs.google.com/forms/d/e/1FAIpQLSdwrwnQ2yTlGx0_YMzrNaf_CmCjKenTJ-FpAIg_dh94zPku_A/viewform?usp=header" },
+      { title: "Git & GitHub", formUrl: "https://docs.google.com/forms/d/e/1FAIpQLSdibeVkMX4kLZtQnGnL-vEzCYqXm07XxUUBP5csGhNDBywcbQ/viewform?usp=header" },
       { title: "CI/CD Workflows", formUrl: "https://docs.google.com/forms/d/e/1FAIpQLSeuKE_d5QxFPCbaRW--7_zvkVLgYXBmEO-ag2c7GV1_SHXRtQ/viewform?usp=header" },
       { title: "Flutter", formUrl: "https://docs.google.com/forms/d/e/1FAIpQLSdwrwnQ2yTlGx0_YMzrNaf_CmCjKenTJ-FpAIg_dh94zPku_A/viewform?usp=header" },
       { title: "Web Development", formUrl: "https://docs.google.com/forms/d/e/1FAIpQLScCUS2uKWTy7gHN4qAODlG752YLHrtCYLBpQ_Nih-7QNVUFmQ/viewform?usp=header"},
@@ -69,8 +69,7 @@ export const tracks = [
     node: { x: 94, y: 60 },
     items: [
       { title: "Computer Science", formUrl: "https://docs.google.com/forms/d/e/1FAIpQLSfaNrTlRLoCsn872DGnGPVT7tlynzhGMMlKMD_WG1NMU_flIw/viewform?usp=header" },
-      { title: "Business Studies", formUrl: "https://docs.google.com/forms/d/e/1FAIpQLSff141DADsF5AKKTJguKv-ED0AB_cfplBb_HOIjagqZLrxYvg/viewform?usp=header" },
-    ],
+      { title: "Business Studies", formUrl: "https://docs.google.com/forms/d/e/1FAIpQLSdTi0AGQgi-EQqqtYsEY4QNyczpp8zyAnp1c8rb4UNFMp8MJw/viewform?usp=header" },
   },
   {
     id: "matriculation",
