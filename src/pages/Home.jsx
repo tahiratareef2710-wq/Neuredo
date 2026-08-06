@@ -4,11 +4,12 @@ import Hero from "../components/Hero";
 import About from "../components/About";
 import Tracks from "../components/Tracks";
 import Blog from "../components/Blog";
+import Reviews from "../components/Reviews";
 import Contact from "../components/Contact";
 import Footer from "../components/Footer";
-import { useScrollSpy } from "../hooks/useScrollSpy";
+import { useScrollSpy } from "../hooks/useScrollSpy"  ;
 
-const SECTION_IDS = ["home", "about", "tracks", "blog", "contact"];
+const SECTION_IDS = ["home", "about", "tracks", "blog", "reviews", "contact"];
 
 export default function Home() {
   const activeId = useScrollSpy(SECTION_IDS);
@@ -22,6 +23,7 @@ export default function Home() {
         <About />
         <Tracks />
         <Blog />
+        <Reviews />
         <Contact />
       </main>
       <Footer />
