@@ -26,7 +26,7 @@ export default function Footer() {
 
           <div className="site-footer__social">
             <a
-              href="https://facebook.com/YOUR_PAGE"
+              href="https://www.facebook.com/profile.php?id=61592579686647&sk=directory_links"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Facebook"
