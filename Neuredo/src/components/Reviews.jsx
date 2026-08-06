@@ -65,7 +65,7 @@ export default function Reviews() {
                 "{review.text}"
               </blockquote>
               <figcaption className="review-card__foot">
-                <span className="review-card__name">{review.name}</span>
+                <span className="review-card__name"> {review.name}</span>
                 <span className="review-card__track">{review.track}</span>
               </figcaption>
             </motion.figure>
