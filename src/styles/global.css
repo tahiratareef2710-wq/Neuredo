@@ -132,8 +132,12 @@ ul {
 .section {
   position: relative;
   padding: clamp(5rem, 10vw, 8.5rem) 0;
+  scroll-margin-top: 84px;
 }
 
+#home {
+  scroll-margin-top: 0;
+}
 .sr-only {
   position: absolute;
   width: 1px;
