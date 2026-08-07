@@ -17,7 +17,7 @@
 }
 .tracks::before {
   top: 0;
-  background: linear-gradient(180deg, var(--navy-950) 0%, transparent 100%);}
+  background: linear-gradient(180deg, var(--sky-050) 0%, transparent 100%);
 .tracks::after {
   bottom: 0;
   background: linear-gradient(0deg, var(--sky-050) 0%, transparent 100%);
