@@ -313,6 +313,7 @@
 @media (max-width: 880px) {
   .tracks__grid {
     grid-template-columns: repeat(2, 1fr);
+    margin-top: 2.5rem;   /* ← add this line */
   }
   .tracks__blueprint {
     display: none;
