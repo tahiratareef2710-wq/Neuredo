@@ -7,15 +7,15 @@
 
 export const reviews = [
   {
-    name: "Sarah M.",
-    track: "O Level Computer Science",
-    text: "The notes are well structured and helped me prepare much faster for my exams.",
+    name: "Ayesha",
+    track: "Intermediate Math",
+    text: "Thank you so much, an amazing math teacher. I really loved your way of teaching. Because of you, for the first time, math didn't feel so difficult to me. Thanks to your dedication and support, I scored better on my math exam than in all my previous years.",
     rating: 5,
   },
   {
-    name: "Daniel K.",
-    track: "Academic Tuition",
-    text: "Easy to understand and very organized sessions. Highly recommended.",
+    name: " Khadija",
+    track: "O levels Computer Science",
+    text: "My child's grades showed a noticeable improvement after joining her Computer Science classes. She made challenging topics easy and enjoyable to understand, and my child will always remember her, no matter what subject they study next. We are truly grateful to have had her as our teacher",
     rating: 5,
   },
   {
