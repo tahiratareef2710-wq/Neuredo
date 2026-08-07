@@ -21,9 +21,10 @@ export const reviews = [
     rating: 5,
   },
   {
-    name: "Emily R.",
-    track: "A Level Computer Science",
-    text: "The learning tracks made studying for A Levels much less overwhelming.",
+    name: "Saadia",
+    track: "O Levels Business",
+    teacher: "Miss Ruqaiya",
+    text: "Thank you so much for being a huge part of this semi-decent result! I was struggling at a D last time, and your support and teaching made all the difference. Truly grateful.",
     rating: 5,
   },
   {
