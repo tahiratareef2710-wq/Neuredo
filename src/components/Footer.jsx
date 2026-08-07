@@ -44,7 +44,7 @@ export default function Footer() {
             </a>
 
             <a
-              href="https://linkedin.com/company/YOUR_COMPANY"
+              href="https://www.linkedin.com/in/neuredo-edu-a468a0427/?isSelfProfile=true"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
