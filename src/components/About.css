@@ -23,7 +23,6 @@
 .about__eyebrow {
   color: var(--azure-400);
   font-weight: 700;
-  text-shadow: 0 1px 4px rgba(6, 10, 24, 0.8);
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
