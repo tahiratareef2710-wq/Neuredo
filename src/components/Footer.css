@@ -92,7 +92,8 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 1rem;
-  padding: 1.5rem 0 2rem;
+  padding-top: 1.5rem;
+  padding-bottom: 2rem;
   font-size: 0.8rem;
   color: var(--slate-300);
   opacity: 0.8;
